@@ -33,7 +33,7 @@ return (
       <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center 
       justify-between z-50 ${ isScroll ?"bg-white opacity-95 backdrop-blur-3xl shadow-sm": ""}`}>
         <a href="#top">
-          <Image src={assets.aktanha_logo} className='w-42 cursor-pointer mr-14' alt='logo'/>
+          <Image src={assets.aktanha_logo} className='w-36 cursor-pointer mr-14' alt='logo'/>
         </a>
         
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3
