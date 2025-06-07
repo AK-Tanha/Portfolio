@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     
       <div id='contact'
-      className='w-full max-w-6xl mx-auto py-10 scroll-mt-20px-5 bg-white'>
+      className='w-full max-w-6xl mx-auto py-10 scroll-mt-20 bg-white'>
       <h4 className='text-center mb-2 text-lg font-ovo'>Connect with me</h4>
       <h2 className='text-center text-5xl font-ovo'>Get in touch</h2>
       <p className='text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo'>
