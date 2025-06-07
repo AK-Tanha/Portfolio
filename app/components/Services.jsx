@@ -8,7 +8,7 @@ const Services = () => {
       <h4 className='text-center mb-2 text-lg font-ovo'>What I Offer</h4>
       <h2 className='text-center text-5xl font-ovo'>My Services</h2>
       <p className='text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo'>
-        I am a frontend developer from California, USA with 10 years of experience in multiple companies like Microsoft, Tesla and Apple.
+        I am MERN Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.
       </p>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10'>
