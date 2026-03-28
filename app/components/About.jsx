@@ -13,6 +13,23 @@ const About = () => {
     const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
     const next = storedTheme || (prefersDark ? 'dark' : 'light')
     setTheme(next)
+    
+    // Apply theme class to document
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.toggle('dark', next === 'dark')
+    }
+
+    // Listen for theme changes from other components
+    const handleStorageChange = () => {
+      const current = localStorage.getItem('theme')
+      if (current) {
+        setTheme(current)
+        document.documentElement.classList.toggle('dark', current === 'dark')
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   return (
