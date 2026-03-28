@@ -1,10 +1,20 @@
 "use client";
 import { assets, infoList, toolsData } from '@/assets/assets'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
 const About = () => {
+  const [theme, setTheme] = useState('light')
+  const isDark = theme === 'dark'
+
+  useEffect(() => {
+    const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
+    const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const next = storedTheme || (prefersDark ? 'dark' : 'light')
+    setTheme(next)
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -62,10 +72,10 @@ const About = () => {
             {infoList.map(({ icon, iconDark, title, description }, index) => (
               <motion.li
                 whileHover={{ scale: 1.05 }}
-                className='border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]' key={index}>
-                <Image src={icon} alt={title} className='w-7 mt-3' />
-                <h3 className='my-4 font-semibold text-grey-700'>{title}</h3>
-                <p className='text-grey-600 text-sm'>{description}</p>
+                className='border-[0.5px] border-gray-400 dark:border-gray-700 rounded-xl p-6 cursor-pointer hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#fff]' key={index}>
+                <Image src={isDark ? iconDark : icon} alt={title} className='w-7 mt-3' />
+                <h3 className='my-4 font-semibold text-gray-700 dark:text-gray-300'>{title}</h3>
+                <p className='text-gray-600 dark:text-gray-400 text-sm'>{description}</p>
               </motion.li>
             ))}
           </motion.ul>
@@ -75,7 +85,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.3 }}
-            className='my-6 text-grey-700 font-ovo'>Tools I Use</motion.h4>
+            className='my-6 text-gray-700 dark:text-gray-300 font-ovo'>Tools I Use</motion.h4>
           <motion.ul
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -84,7 +94,7 @@ const About = () => {
             {toolsData.map((tool, index) => (
               <motion.li
                 whileHover={{ scale: 1.1 }}
-                className='flex items-center justify-center w-12 sm:w-14 aspect-square border border-grey-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500' key={index}>
+                className='flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 dark:border-gray-700 rounded-lg cursor-pointer hover:-translate-y-1 duration-500' key={index}>
                 <Image src={tool} alt='tool' className='w-5 sm:w-7' />
               </motion.li>
             ))}
