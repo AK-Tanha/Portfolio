@@ -1,12 +1,53 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import { motion } from "motion/react"
 
 const Contact = () => {
-  
   const [result, setResult] = useState("")
+  const [theme, setTheme] = useState('light')
+  const isDark = theme === 'dark'
+
+  useEffect(() => {
+    const applyStoredTheme = () => {
+      const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
+      const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const next = storedTheme || (prefersDark ? 'dark' : 'light');
+      setTheme(next);
+      if (typeof document !== 'undefined') {
+        document.documentElement.classList.toggle('dark', next === 'dark');
+      }
+    };
+
+    applyStoredTheme();
+
+    const updateFromHtmlClass = () => {
+      const darkClass = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+      setTheme(darkClass ? 'dark' : 'light');
+    };
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          updateFromHtmlClass();
+          break;
+        }
+      }
+    });
+
+    if (typeof document !== 'undefined') {
+      observer.observe(document.documentElement, { attributes: true });
+      window.addEventListener('storage', updateFromHtmlClass);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('storage', updateFromHtmlClass);
+      }
+    };
+  }, []);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +79,7 @@ const Contact = () => {
       whileInView={{opacity:1}}
       transition={{duration:1}}
       id='contact'
-      className='w-full max-w-6xl mx-auto py-10 scroll-mt-20 bg-white'>
+      className={`w-full max-w-6xl mx-auto py-10 scroll-mt-20 ${isDark ? 'bg-slate-900 text-slate-100' : 'bg-white text-slate-900'}`}>
       <motion.h4
       initial={{ opacity: 0, y:-20 }}
         whileInView={{ opacity: 1 , y:0}}
@@ -70,7 +111,7 @@ const Contact = () => {
     type="text"
     placeholder="Enter Your Name"
     required
-    className="p-3 outline-none border-[0.5px] border-gray-700 rounded-md bg-white w-full"
+    className={`p-3 outline-none border-[0.5px] rounded-md w-full ${isDark ? 'bg-slate-800 border-slate-600 text-slate-100' : 'bg-white border-gray-700 text-slate-900'}`}
     name='Name'
   />
   <motion.input
@@ -80,7 +121,7 @@ const Contact = () => {
     type="email"
     placeholder="Enter Your Email"
     required
-    className="p-3 outline-none border-[0.5px] border-gray-700 rounded-md bg-white w-full"
+    className={`p-3 outline-none border-[0.5px] rounded-md w-full ${isDark ? 'bg-slate-800 border-slate-600 text-slate-100' : 'bg-white border-gray-700 text-slate-900'}`}
     name='Email'
   />
 </div>
@@ -90,12 +131,13 @@ const Contact = () => {
       whileInView={{y:0, opacity:1}}
       transition={{duration:0.6, delay:1.3}}
         rows="6" placeholder='Enter Your Message' required
-        className='w-full p-4 outline-none border-[0.5px] border-gray-700 rounded-md bg-white mb-6' name='Message'/>
+        className={`w-full p-4 outline-none border-[0.5px] rounded-md mb-6 ${isDark ? 'bg-slate-800 border-slate-600 text-slate-100' : 'bg-white border-gray-700 text-slate-900'}`}
+        name='Message'/>
         <motion.button
         whileHover={{scale:1.05}}
         transition={{duration:0.3}}
         type='submit'
-        className='py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white
+        className='py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white dark:bg-indigo-500 dark:text-white
         rounded-full mx-auto hover:bg-black duration-500'
         >Submit now <Image src={assets.right_arrow_white} alt='' className='w-4' /> </motion.button>
         

@@ -1,13 +1,69 @@
 @import "tailwindcss";
 
 
-*{
+* {
   font-family: 'Outfit';
 }
-
 
 .font-ovo {
   font-family: 'Ovo', sans-serif;
 }
 
 
+
+@theme {
+  --lightHover: '#fcf4ff',
+    --darkHover: '#2a004a',
+    --darkTheme: '#11001F',
+}
+
+/* Light/Dark base colors */
+:root {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+html, body {
+  transition: background-color 0.24s ease, color 0.24s ease;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+html.dark body {
+  background-color: #050816;
+  color: #e2e8f0;
+}
+
+.dark .bg-page {
+  background-color: #0b1220 !important;
+}
+
+.dark .bg-subtle {
+  background-color: #111a2e !important;
+}
+
+
+.dark .bg-page-light {
+  background-color: #0b1120;
+}
+
+.dark .text-page-light {
+  color: #f8fafc;
+}
+
+.dark .border-page {
+  border-color: #334155;
+}
+
+.dark .text-page {
+  color: #e2e8f0;
+}
+
+.dark .bg-page {
+  background-color: #0f172a;
+}

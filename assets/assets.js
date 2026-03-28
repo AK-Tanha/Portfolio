@@ -37,6 +37,7 @@ import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 import ak_pro from './WhatsApp Image 2025-05-29 at 2.29.53 PM.jpeg'
 import aktanha_logo from './AKtanha logo.png'
+import aktanha_logo_dark from './AKtanha logod1.png'
 
 export const assets = {
     user_image,
@@ -77,7 +78,8 @@ export const assets = {
     right_arrow_bold,
     right_arrow_bold_dark,
     ak_pro,
-    aktanha_logo
+    aktanha_logo,
+    aktanha_logo_dark,
 };
 
 export const workData = [

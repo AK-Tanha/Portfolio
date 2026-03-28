@@ -20,6 +20,16 @@ export default function RootLayout({ children }) {
       <body
         className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden`}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function() {
+              const stored = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
+              const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+              const theme = stored || (prefersDark ? 'dark' : 'light');
+              if (theme === 'dark') document.documentElement.classList.add('dark');
+            })();`,
+          }}
+        />
         {children}
       </body>
     </html>
