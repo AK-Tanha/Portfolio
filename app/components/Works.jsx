@@ -5,31 +5,46 @@ import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
 const Works = () => {
-  const [theme, setTheme] = useState('light')
-  const isDark = theme === 'dark'
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
-    const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const next = storedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(next)
-    
-    // Apply theme class to document
-    if (typeof document !== 'undefined') {
-      document.documentElement.classList.toggle('dark', next === 'dark')
+    const syncDarkMode = () => {
+      if (typeof window === 'undefined') return false
+
+      const storedTheme = localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const preferredIsDark = storedTheme === 'dark' || (!storedTheme && prefersDark)
+      const hasDarkClass = document.documentElement.classList.contains('dark')
+      const resolvedDark = hasDarkClass || preferredIsDark
+
+      document.documentElement.classList.toggle('dark', resolvedDark)
+      setIsDark(resolvedDark)
+      return resolvedDark
     }
 
-    // Listen for theme changes from other components
-    const handleStorageChange = () => {
-      const current = localStorage.getItem('theme')
-      if (current) {
-        setTheme(current)
-        document.documentElement.classList.toggle('dark', current === 'dark')
+    syncDarkMode()
+
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'))
+    })
+    if (typeof document !== 'undefined') {
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key === 'theme') {
+        const nextDark = event.newValue === 'dark'
+        document.documentElement.classList.toggle('dark', nextDark)
+        setIsDark(nextDark)
       }
     }
 
     window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('storage', handleStorageChange)
+    }
   }, [])
 
   return (
@@ -67,7 +82,12 @@ const Works = () => {
             key={index}
             className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group'
             style={{ backgroundImage: `url(${projects.bgImage})` }}>
-            <div className='bg-white dark:bg-slate-800 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
+            <div className='border-[0.5px] border-gray-400 dark:border-gray-700 rounded-xl p-6 cursor-pointer
+              bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+              hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a]
+              hover:-translate-y-1
+              hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#fff]
+              absolute bottom-5 left-1/2 -translate-x-1/2 w-10/12 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
               <div>
                 <h2 className='font-semibold text-gray-700 dark:text-gray-100'>{projects.title}</h2>
                 <p className='text-sm text-gray-700 dark:text-gray-300'>{projects.description}</p>

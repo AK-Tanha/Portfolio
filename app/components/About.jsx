@@ -5,31 +5,50 @@ import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
 const About = () => {
-  const [theme, setTheme] = useState('light')
-  const isDark = theme === 'dark'
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
-    const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const next = storedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(next)
-    
-    // Apply theme class to document
-    if (typeof document !== 'undefined') {
-      document.documentElement.classList.toggle('dark', next === 'dark')
+    const getInitialTheme = () => {
+      if (typeof window === 'undefined') return false
+
+      const storedTheme = localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const nextTheme = storedTheme || (prefersDark ? 'dark' : 'light')
+
+      const isDarkMode = nextTheme === 'dark'
+      document.documentElement.classList.toggle('dark', isDarkMode)
+      setIsDark(isDarkMode)
+
+      return isDarkMode
     }
 
-    // Listen for theme changes from other components
-    const handleStorageChange = () => {
-      const current = localStorage.getItem('theme')
-      if (current) {
-        setTheme(current)
-        document.documentElement.classList.toggle('dark', current === 'dark')
+    getInitialTheme()
+
+    const updateFromDocumentClass = () => {
+      if (typeof document === 'undefined') return
+      const currentIsDark = document.documentElement.classList.contains('dark')
+      setIsDark(currentIsDark)
+    }
+
+    const handleStorageChange = (event) => {
+      if (event.key === 'theme') {
+        const nextIsDark = event.newValue === 'dark'
+        document.documentElement.classList.toggle('dark', nextIsDark)
+        setIsDark(nextIsDark)
       }
     }
 
+    const observer = new MutationObserver(updateFromDocumentClass)
+    if (typeof document !== 'undefined') {
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+    }
+
     window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('storage', handleStorageChange)
+    }
   }, [])
 
   return (

@@ -9,14 +9,29 @@ const Services = () => {
 
   useEffect(() => {
     const checkDarkMode = () => {
-      const isDarkElement = typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
-      setIsDark(isDarkElement)
+      if (typeof window === 'undefined') return false
+
+      const storedTheme = localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const preferredIsDark = storedTheme === 'dark' || (!storedTheme && prefersDark)
+
+      const hasDarkClass = document.documentElement.classList.contains('dark')
+      const isDarkMode = hasDarkClass || preferredIsDark
+
+      document.documentElement.classList.toggle('dark', isDarkMode)
+      setIsDark(isDarkMode)
+
+      return isDarkMode
     }
 
     checkDarkMode()
 
     // Listen for dark class changes on html element
-    const observer = new MutationObserver(checkDarkMode)
+    const observer = new MutationObserver(() => {
+      const isDarkMode = document.documentElement.classList.contains('dark')
+      setIsDark(isDarkMode)
+    })
+
     if (typeof document !== 'undefined') {
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
     }
@@ -104,14 +119,10 @@ const ServiceCard = ({ service, index, isDark }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.05 }}
       className={`
-        border rounded-lg px-6 py-10 cursor-pointer 
-        transition-all duration-300 ease-in-out
-        hover:-translate-y-1
-        border-gray-300 dark:border-gray-700
-        bg-white dark:bg-gray-900
+        border-[0.5px] border-gray-400 dark:border-gray-700 rounded-xl p-6 cursor-pointer
         hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a]
-        hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#9f7aea]
-        hover:border-gray-400 dark:hover:border-purple-500
+        hover:-translate-y-1 duration-500
+        hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#fff]
       `}
     >
       <div className='flex flex-col h-full'>
@@ -120,23 +131,16 @@ const ServiceCard = ({ service, index, isDark }) => {
           alt={`${safeTitle} icon`}
           width={40}
           height={40}
-          className='w-10 h-10'
+          className='w-7 mt-3'
           loading={index < 3 ? 'eager' : 'lazy'} // Prioritize above-the-fold images
         />
         
-        <h3 className='text-lg my-4 font-semibold text-gray-800 dark:text-gray-100'>
-          {safeTitle}
-        </h3>
-        
-        <p className='text-sm leading-6 flex-grow text-gray-600 dark:text-gray-400'>
-          {safeDescription}
-        </p>
+        <h3 className='my-4 font-semibold text-gray-700 dark:text-gray-300'>{safeTitle}</h3>
+        <p className='text-gray-600 dark:text-gray-400 text-sm'>{safeDescription}</p>
         
         <a 
           href={safeLink} 
-          className='flex items-center gap-2 text-sm mt-6 font-medium transition-colors duration-200
-            text-purple-600 dark:text-purple-400 
-            hover:text-purple-800 dark:hover:text-purple-300'
+          className='flex items-center gap-2 text-sm mt-6 font-medium transition-colors duration-200 text-purple-600 dark:text-purple-300 hover:text-purple-800 dark:hover:text-purple-100'
           aria-label={`Read more about ${safeTitle}`}
           onClick={(e) => {
             if (safeLink === '#') {
