@@ -5,31 +5,23 @@ import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
 const Services = () => {
-  const [theme, setTheme] = useState('light')
-  const isDark = theme === 'dark'
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
-    const storedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
-    const next = storedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(next)
-    
-    // Apply theme class to document
+    const checkDarkMode = () => {
+      const isDarkElement = typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+      setIsDark(isDarkElement)
+    }
+
+    checkDarkMode()
+
+    // Listen for dark class changes on html element
+    const observer = new MutationObserver(checkDarkMode)
     if (typeof document !== 'undefined') {
-      document.documentElement.classList.toggle('dark', next === 'dark')
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
     }
 
-    // Listen for theme changes from other components
-    const handleStorageChange = () => {
-      const current = localStorage.getItem('theme')
-      if (current) {
-        setTheme(current)
-        document.documentElement.classList.toggle('dark', current === 'dark')
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
+    return () => observer.disconnect()
   }, [])
 
   // Validate serviceData to prevent runtime errors
@@ -53,16 +45,16 @@ const Services = () => {
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.5 }}
-        className='text-center mb-2 text-lg font-ovo text-gray-800 dark:text-gray-200'
+        className='text-center mb-2 text-lg font-ovo'
       >
         What I Offer
       </motion.h4>
       
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className='text-center text-5xl font-ovo text-gray-900 dark:text-white'
+        className='text-center text-5xl font-ovo'
       >
         My Services
       </motion.h2>
@@ -71,7 +63,7 @@ const Services = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.5 }}
-        className='text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo text-gray-700 dark:text-gray-300'
+        className= 'text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo'
       >
         I am MERN Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.
       </motion.p>

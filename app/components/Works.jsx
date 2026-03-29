@@ -42,17 +42,17 @@ const Works = () => {
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className='text-center mb-2 text-lg font-ovo text-gray-800 dark:text-gray-200'>My Portfolio</motion.h4>
+        className='text-center mb-2 text-lg font-ovo'>My Portfolio</motion.h4>
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
-        className='text-center text-5xl font-ovo text-gray-900 dark:text-white'>My Latest Work</motion.h2>
+        className='text-center text-5xl font-ovo'>My Latest Work</motion.h2>
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.7 }}
-        className='text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo text-gray-700 dark:text-gray-300'>
+        className='text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo '>
         Welcome to my web development portfolio! Explore a collection of projects showcasing my expertise in front-end development.
       </motion.p>
       <motion.div

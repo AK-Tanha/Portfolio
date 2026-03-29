@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 * {
   font-family: 'Outfit';
 }
@@ -9,12 +8,11 @@
   font-family: 'Ovo', sans-serif;
 }
 
-
-
 @theme {
-  --lightHover: '#fcf4ff',
-    --darkHover: '#2a004a',
-    --darkTheme: '#11001F',
+  --darkMode: class;
+  --lightHover: '#fcf4ff';
+  --darkHover: '#2a004a';
+  --darkTheme: '#11001F';
 }
 
 /* Light/Dark base colors */
