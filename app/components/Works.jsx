@@ -1,6 +1,7 @@
 "use client";
 import { assets, workData } from '@/assets/assets'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
@@ -76,28 +77,29 @@ const Works = () => {
         transition={{ duration: 0.6, delay: 0.9 }}
         className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-10'>
         {workData.map((projects, index) => (
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            key={index}
-            className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group'
-            style={{ backgroundImage: `url(${projects.bgImage})` }}>
-            <div className='border-[0.5px] border-gray-400 dark:border-gray-700 rounded-xl p-6 cursor-pointer
-              bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
-              hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a]
-              hover:-translate-y-1
-              hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#fff]
-              absolute bottom-5 left-1/2 -translate-x-1/2 w-10/12 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
-              <div>
-                <h2 className='font-semibold text-gray-700 dark:text-gray-100'>{projects.title}</h2>
-                <p className='text-sm text-gray-700 dark:text-gray-300'>{projects.description}</p>
+          <Link href={projects.link || '#'} key={index} className="block group">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer h-full'
+              style={{ backgroundImage: `url(${projects.bgImage})` }}>
+              <div className='border-[0.5px] border-gray-400 dark:border-gray-700 rounded-xl p-6 cursor-pointer
+                bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100
+                hover:bg-[#fcf4ff] dark:hover:bg-[#2a004a]
+                hover:-translate-y-1
+                hover:shadow-[4px_4px_0_#000] dark:hover:shadow-[4px_4px_0_#fff]
+                absolute bottom-5 left-1/2 -translate-x-1/2 w-10/12 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
+                <div className='flex-1 overflow-hidden pr-2'>
+                  <h2 className='font-semibold text-gray-700 dark:text-gray-100 truncate'>{projects.title}</h2>
+                  <p className='text-sm text-gray-700 dark:text-gray-300 truncate'>{projects.description}</p>
+                </div>
+                <div className='border rounded-full border-black dark:border-gray-400 w-9 aspect-square shrink-0
+                  flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 dark:group-hover:bg-lime-400 transition'>
+                  <Image src={assets.send_icon} alt='send icon' className='w-5 dark:invert' />
+                </div>
               </div>
-              <div className='border rounded-full border-black dark:border-gray-400 w-9 aspect-square
-                flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 dark:group-hover:bg-lime-400 transition'>
-                <Image src={assets.send_icon} alt='send icon' className='w-5 dark:invert' />
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
         ))}
       </motion.div>
       <motion.a

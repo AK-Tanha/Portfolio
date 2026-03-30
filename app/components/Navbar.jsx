@@ -53,22 +53,22 @@ return (
       </div>
 
       <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-colors duration-300 ${navBgClass} ${isScroll ? 'shadow-sm' : ''}`}>
-        <a href="#top">
+        <a href="/#top">
           <Image src={isDark ? assets.aktanha_logo_dark : assets.aktanha_logo} className='w-36 cursor-pointer mr-14' alt='logo'/>
         </a>
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? (isDark ? 'shadow-sm bg-slate-800/70' : 'shadow-sm bg-white/80') : (isDark ? 'shadow-sm bg-slate-900/70' : 'shadow-sm bg-white/50')}`}>
-          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="#top">Home</a></li>
-          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="#about">About Me</a></li>
-          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="#services">Services</a></li>
-          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="#works">My Work</a></li>
-          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="#contact">Contact</a></li>
+          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="/#top">Home</a></li>
+          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="/#about">About Me</a></li>
+          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="/#services">Services</a></li>
+          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="/#works">My Work</a></li>
+          <li><a className={`font-ovo ${isDark ? 'text-slate-100' : 'text-slate-700'} hover:text-indigo-500`} href="/#contact">Contact</a></li>
         </ul>
 
         <div className='flex items-center gap-3'>
           <button onClick={toggleTheme} aria-label='Toggle dark/light theme' className='transition-colors duration-200'>
             <Image src={isDark ? assets.sun_icon : assets.moon_icon} alt={isDark ? 'Sun icon' : 'Moon icon'} className='w-6'/>
           </button>
-          <a href="#contact" className={`hidden lg:flex items-center gap-3 px-10 py-2.5 border rounded-full ml-4 font-ovo ${isDark ? 'text-white border-slate-600' : 'text-slate-800 border-gray-500'}`}>Contact <Image src={isDark ? assets.arrow_icon_dark : assets.arrow_icon} className='w-3' alt='icon'/> </a>
+          <a href="/#contact" className={`hidden lg:flex items-center gap-3 px-10 py-2.5 border rounded-full ml-4 font-ovo ${isDark ? 'text-white border-slate-600' : 'text-slate-800 border-gray-500'}`}>Contact <Image src={isDark ? assets.arrow_icon_dark : assets.arrow_icon} className='w-3' alt='icon'/> </a>
 
           <button className='block md:hidden ml-3'>
             <Image src={isDark ? assets.menu_white : assets.menu_black} alt='' className='w-6' onClick={openMenu}/>
@@ -81,11 +81,11 @@ return (
           <div className='absolute right-6 top-6' onClick={closeMenu}>
             <Image src={isDark ? assets.close_white : assets.close_black} alt='' className='w-5 cursor-pointer'/>
           </div>
-          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="#top">Home</a></li>
-          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="#about">About Me</a></li>
-          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="#services">Services</a></li>
-          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="#works">My Work</a></li>
-          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="#contact">Contact</a></li>
+          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="/#top">Home</a></li>
+          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="/#about">About Me</a></li>
+          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="/#services">Services</a></li>
+          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="/#works">My Work</a></li>
+          <li><a className="font-ovo text-slate-800 dark:text-slate-100" onClick={closeMenu} href="/#contact">Contact</a></li>
        </ul>
 
 

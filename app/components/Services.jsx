@@ -1,6 +1,7 @@
 "use client";
 import { assets, serviceData } from '@/assets/assets'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { motion } from "motion/react"
 
@@ -138,7 +139,7 @@ const ServiceCard = ({ service, index, isDark }) => {
         <h3 className='my-4 font-semibold text-gray-700 dark:text-gray-300'>{safeTitle}</h3>
         <p className='text-gray-600 dark:text-gray-400 text-sm'>{safeDescription}</p>
         
-        <a 
+        <Link 
           href={safeLink} 
           className='flex items-center gap-2 text-sm mt-6 font-medium transition-colors duration-200 text-purple-600 dark:text-purple-300 hover:text-purple-800 dark:hover:text-purple-100'
           aria-label={`Read more about ${safeTitle}`}
@@ -157,7 +158,7 @@ const ServiceCard = ({ service, index, isDark }) => {
             height={16}
             className='w-4 h-4 transition-transform duration-200 group-hover:translate-x-1'
           />
-        </a>
+        </Link>
       </div>
     </motion.div>
   )

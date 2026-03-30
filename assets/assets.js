@@ -84,32 +84,64 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
+        id: 'event-management-app',
+        title: 'Event Management App',
+        description: 'Next.js • TypeScript • Tailwind CSS • Axios',
         bgImage: '/work-1.png',
+        link: '/works/event-management-app',
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
+        id: 'blogging-platform',
+        title: 'Blogging Platform',
+        description: 'React • Redux Toolkit • Express.js • MongoDB',
         bgImage: '/work-2.png',
+        link: '/works/blogging-platform',
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
+        id: 'ecommerce-platform',
+        title: 'E-commerce Platform',
+        description: 'Next.js • TypeScript • Tailwind • TanStack Query',
         bgImage: '/work-3.png',
+        link: '/works/ecommerce-platform',
     },
     {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
+        id: 'responsive-web-applications',
+        title: 'Responsive Web Applications',
+        description: 'React.js • Next.js • UI Engineering',
         bgImage: '/work-4.png',
+        link: '/works/responsive-web-applications',
     },
 ]
 
 export const serviceData = [
-    { icon: assets.web_icon, title: 'Web design', description: 'Web development is the process of building, programming...', link: '' },
-    { icon: assets.mobile_icon, title: 'Mobile app', description: 'Mobile app development involves creating software for mobile devices...', link: '' },
-    { icon: assets.ui_icon, title: 'UI/UX design', description: 'UI/UX design focuses on creating a seamless user experience...', link: '' },
-    { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual communication...', link: '' },
+  {
+    id: 'react-nextjs-development',
+    icon: assets.web_icon,
+    title: 'React & Next.js Development',
+    description: 'Expert in building fast, SEO-friendly, and scalable web applications using React.js, Next.js 14+, TypeScript, and Tailwind CSS with modern best practices.',
+    link: '/services/react-nextjs-development'
+  },
+  {
+    id: 'mern-stack-solutions',
+    icon: assets.mobile_icon,
+    title: 'MERN Stack Solutions',
+    description: 'End-to-end web development using MongoDB, Express.js, React.js, and Node.js. Including secure authentication, dynamic APIs, and admin dashboards.',
+    link: '/services/mern-stack-solutions'
+  },
+  {
+    id: 'modern-ui-ux-development',
+    icon: assets.ui_icon,
+    title: 'Modern UI/UX Development',
+    description: 'Crafting beautiful, responsive, and accessible user interfaces with Tailwind CSS, component-based architecture, state management, and smooth animations.',
+    link: '/services/modern-ui-ux-development'
+  },
+  {
+    id: 'ecommerce-management-systems',
+    icon: assets.graphics_icon,
+    title: 'E-commerce & Management Systems',
+    description: 'Developing full-featured systems like e-commerce admin panels, event management platforms, blogging systems with CRUD, analytics, and secure user flows.',
+    link: '/services/ecommerce-management-systems'
+  },
 ]
 
 export const infoList = [

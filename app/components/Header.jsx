@@ -48,9 +48,9 @@ const Header = () => {
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          href="#contact" className='px-10 py-3 border rounded-full flex items-center gap-2 bg-black text-white border-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:border-black dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-300'>
+          href="/#contact" className='group px-10 py-3 border rounded-full flex items-center gap-2 bg-black text-white border-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:border-black dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-300'>
           Contact Me
-          <Image src={assets.right_arrow_white} alt='' className='w-4' />
+          <Image src={assets.right_arrow_white} alt='' className='w-4 group-hover:invert dark:invert dark:group-hover:invert-0' />
         </motion.a>
 
         <motion.a
@@ -59,7 +59,7 @@ const Header = () => {
           transition={{ duration: 0.6, delay: 1.2 }}
           href="/Resume of AK Tanha.pdf" download className='px-10 py-3 border rounded-full border-gray-500 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors duration-300'>
           My Resume
-          <Image src={assets.download_icon} alt='' className='w-4' />
+          <Image src={assets.download_icon} alt='' className='w-4 dark:invert' />
         </motion.a>
 
       </div>
