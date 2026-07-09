@@ -53,10 +53,15 @@ const Works = () => {
               transition={{ duration: 0.3 }}
               className='relative rounded-2xl overflow-hidden aspect-[4/3] glass card-hover'
             >
-              <div
-                className='absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110'
-                style={{ backgroundImage: `url(${project.bgImage})` }}
-              />
+              <div className='absolute inset-0 transition-transform duration-500 group-hover:scale-110'>
+                <Image
+                  src={project.bgImage}
+                  alt={project.title}
+                  fill
+                  className='object-cover object-center'
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+              </div>
               <div className='absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300' />
 
               <div className='absolute bottom-0 left-0 right-0 p-5'>
@@ -75,7 +80,7 @@ const Works = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1.1 }}
-        href="#"
+        href="/works"
         className='w-max flex items-center justify-center gap-2 text-secondary glass rounded-full px-8 mx-auto my-16 py-3 card-hover'
       >
         Show More
