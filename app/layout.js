@@ -1,5 +1,6 @@
 import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -12,29 +13,39 @@ const ovo = Ovo({
 });
 
 export const metadata = {
-  title: "AK Tanha",
-  description: "Portfolio website of AK Tanha",
+  title: "AK Tanha | MERN Stack Developer",
+  description: "Portfolio of AK Tanha — MERN Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.",
+  keywords: "MERN Stack, React, Next.js, Developer, Bangladesh, Portfolio, Web Development",
+  openGraph: {
+    title: "AK Tanha | MERN Stack Developer",
+    description: "MERN Stack Developer building responsive, full-stack web apps with clean UI and scalable backend.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden`}
       >
-        <Navbar/>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function() {
-              const stored = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
-              const prefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
-              const theme = stored || (prefersDark ? 'dark' : 'light');
-              if (theme === 'dark') document.documentElement.classList.add('dark');
+              try {
+                const stored = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = stored || (prefersDark ? 'dark' : 'light');
+                if (theme === 'dark') document.documentElement.classList.add('dark');
+              } catch(e) {}
             })();`,
           }}
         />
-        {children}
-        <Footer/>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

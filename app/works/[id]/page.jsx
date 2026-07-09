@@ -34,17 +34,17 @@ export default async function WorkPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 pt-24 pb-12 px-5 transition-colors duration-300">
+    <div className="min-h-screen bg-body pt-24 pb-12 px-5">
       <div className="max-w-5xl mx-auto">
         <Link 
           href="/#works" 
-          className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 mb-8 transition-colors font-medium"
+          className="inline-flex items-center gap-2 text-accent hover:text-accent mb-8 transition-colors font-medium"
         >
           &larr; Back to Portfolio
         </Link>
 
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700">
-          <div className="h-64 sm:h-80 md:h-[450px] w-full relative bg-gray-200 dark:bg-gray-700">
+        <div className="bg-card rounded-3xl overflow-hidden shadow-sm border border-default">
+          <div className="h-64 sm:h-80 md:h-[450px] w-full relative bg-card">
             <Image 
               src={project.bgImage} 
               alt={project.title}
@@ -64,18 +64,18 @@ export default async function WorkPage({ params }) {
           </div>
 
           <div className="p-8 md:p-12">
-            <div className="prose prose-lg md:prose-xl dark:prose-invert max-w-none">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-6 font-ovo border-b border-gray-200 dark:border-gray-700 pb-4">
+            <div className="max-w-none">
+              <h2 className="text-2xl md:text-3xl font-semibold text-body mb-6 font-ovo border-b border-default pb-4">
                 Project Overview
               </h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-10 text-lg">
+              <p className="text-secondary leading-relaxed mb-10 text-lg">
                 This project represents a complete implementation using modern front-end engineering principles. 
                 With a focus on performance, scalability, and delivering an exceptional user experience, 
                 it showcases responsive UI architecture, seamless API integration, and robust state management. 
                 The interface was designed to be highly interactive, accessible, and pixel-perfect across all devices.
               </p>
               
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 mt-12 mb-6 font-ovo border-b border-gray-200 dark:border-gray-700 pb-4">
+              <h2 className="text-2xl md:text-3xl font-semibold text-body mt-12 mb-6 font-ovo border-b border-default pb-4">
                 Key Highlights
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -85,9 +85,9 @@ export default async function WorkPage({ params }) {
                   "Intuitive user flows and carefully crafted micro-interactions.",
                   "Clean, modular, and highly maintainable codebase architecture."
                 ].map((item, index) => (
-                  <div key={index} className="flex gap-4 p-5 bg-white dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700/50 shadow-sm transition-transform hover:scale-[1.02] duration-300 cursor-default">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold text-xl leading-none mt-1">✦</span>
-                    <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                  <div key={index} className="flex gap-4 p-5 bg-card rounded-xl border border-default shadow-sm transition-transform hover:scale-[1.02] duration-300 cursor-default">
+                    <span className="text-accent font-bold text-xl leading-none mt-1">✦</span>
+                    <span className="text-secondary">{item}</span>
                   </div>
                 ))}
               </div>

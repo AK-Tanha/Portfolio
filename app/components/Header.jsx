@@ -1,67 +1,76 @@
 "use client";
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
-import React from 'react'
 import { motion } from "motion/react"
 
 const Header = () => {
   return (
+    <div className='relative min-h-screen flex items-center justify-center overflow-hidden'>
+      <div className='absolute inset-0 bg-grid pointer-events-none' />
+      <div className='absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none' />
+      <div className='absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl pointer-events-none' />
 
-    <div className='w-11/12 max-w-3xl text-center mx-auto py-16 sm:py-24 flex flex-col items-center'>
-      <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
-      >
-        <Image src={assets.ak_pro} alt='' className='rounded-full w-32 h-32' />
-      </motion.div>
+      <div className='w-11/12 max-w-3xl text-center mx-auto py-24 sm:py-32 flex flex-col items-center relative z-10'>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, type: 'spring', stiffness: 100 }}
+          className='relative mb-6'
+        >
+          <div className='absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 blur-xl opacity-50 animate-pulse' />
+          <Image src={assets.ak_pro} alt='AK Tanha' className='rounded-full w-32 h-32 object-cover relative ring-2 ring-purple-500/30' />
+        </motion.div>
 
-      <motion.h3
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className='flex items-end gap-2 text-xl md:text-2xl mb-3 font-ovo'>
-        Hi! I'm AK Tanha <Image src={assets.hand_icon} alt='' className='w-6' />
-      </motion.h3>
+        <motion.h3
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className='flex items-center justify-center gap-2 text-xl md:text-2xl mb-3 font-ovo'
+        >
+          Hi, I'm AK Tanha <Image src={assets.hand_icon} alt='' className='w-6 inline' />
+        </motion.h3>
 
-      <motion.h1
+        <motion.h1
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className='text-4xl sm:text-6xl md:text-[72px] font-ovo leading-tight'
+        >
+          <span className='gradient-text'>MERN Stack</span> Developer<br />based in Bangladesh
+        </motion.h1>
 
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className='max-w-2xl mx-auto font-ovo text-lg text-secondary'
+        >
+          Building responsive, full-stack web apps with clean UI and scalable backend.
+        </motion.p>
 
-        className='text-3xl sm:text-6xl md:text-[66px] font-ovo'>
-        A MERN stack developer based in Bangladesh
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className='max-w-2xl mx-auto font-ovo'>
-        I am a MERN Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.
-      </motion.p>
-
-      <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
-
-        <motion.a
+        <motion.div
           initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          href="/#contact" className='group px-10 py-3 border rounded-full flex items-center gap-2 bg-black text-white border-white hover:bg-white hover:text-black dark:bg-white dark:text-black dark:border-black dark:hover:bg-slate-800 dark:hover:text-white transition-colors duration-300'>
-          Contact Me
-          <Image src={assets.right_arrow_white} alt='' className='w-4 group-hover:invert dark:invert dark:group-hover:invert-0' />
-        </motion.a>
+          className='flex flex-col sm:flex-row items-center gap-4 mt-8'
+        >
+          <a
+            href="/#contact"
+            className='group px-8 py-3 rounded-full flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 font-ovo'
+          >
+            Contact Me
+            <Image src={assets.right_arrow_white} alt='' className='w-4 group-hover:translate-x-1 transition-transform' />
+          </a>
 
-        <motion.a
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          href="/Resume of AK Tanha.pdf" download className='px-10 py-3 border rounded-full border-gray-500 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center gap-2 transition-colors duration-300'>
-          My Resume
-          <Image src={assets.download_icon} alt='' className='w-4 dark:invert' />
-        </motion.a>
-
+          <a
+            href="/Resume of AK Tanha.pdf"
+            download
+            className='group px-8 py-3 rounded-full flex items-center gap-2 border border-strong hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300 font-ovo text-secondary'
+          >
+            My Resume
+            <Image src={assets.download_icon} alt='' className='w-4 dark:invert group-hover:-translate-y-0.5 transition-transform' />
+          </a>
+        </motion.div>
       </div>
     </div>
   )

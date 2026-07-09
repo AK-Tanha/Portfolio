@@ -8,60 +8,125 @@
   font-family: 'Ovo', sans-serif;
 }
 
-@theme {
-  --darkMode: class;
-  --lightHover: '#fcf4ff';
-  --darkHover: '#2a004a';
-  --darkTheme: '#11001F';
-}
-
-/* Light/Dark base colors */
 :root {
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-accent: #7c3aed;
+  --text-accent-hover: #6d28d9;
+  --bg-primary: #fafafa;
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-glass: rgba(255, 255, 255, 0.3);
+  --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.12);
+  --shadow-card: 0 12px 40px rgba(124, 58, 237, 0.08);
   color-scheme: light;
 }
+
 html.dark {
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-accent: #a78bfa;
+  --text-accent-hover: #c4b5fd;
+  --bg-primary: #040b16;
+  --bg-card: #0f172a;
+  --bg-glass: rgba(15, 23, 42, 0.75);
+  --border-subtle: #1e293b;
+  --border-strong: #334155;
+  --border-glass: rgba(51, 65, 85, 0.4);
+  --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.2);
+  --shadow-card: 0 12px 40px rgba(124, 58, 237, 0.12);
   color-scheme: dark;
 }
 
 html, body {
-  transition: background-color 0.24s ease, color 0.24s ease;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-  background-color: #ffffff;
-  color: #0f172a;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-html.dark body {
-  background-color: #050816;
-  color: #e2e8f0;
+::selection {
+  background: #a78bfa;
+  color: white;
 }
 
-.dark .bg-page {
-  background-color: #0b1220 !important;
+html.dark ::selection {
+  background: #7c3aed;
+  color: white;
 }
 
-.dark .bg-subtle {
-  background-color: #111a2e !important;
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed, #db2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+html.dark .gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-
-.dark .bg-page-light {
-  background-color: #0b1120;
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
 }
 
-.dark .text-page-light {
-  color: #f8fafc;
+.glow {
+  box-shadow: var(--shadow-glow);
 }
 
-.dark .border-page {
-  border-color: #334155;
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+html.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(167, 139, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-.dark .text-page {
-  color: #e2e8f0;
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.3), transparent);
+  margin: 2rem auto;
+  max-width: 80%;
+}
+html.dark .section-divider {
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.3), transparent);
 }
 
-.dark .bg-page {
-  background-color: #0f172a;
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.text-body { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--text-accent); }
+.hover-text-accent:hover { color: var(--text-accent-hover); }
+.bg-body { background-color: var(--bg-primary); }
+.bg-card { background-color: var(--bg-card); }
+.border-default { border-color: var(--border-subtle); }
+.border-strong { border-color: var(--border-strong); }
