@@ -65,38 +65,36 @@ export default async function WorkPage({ params }) {
 
           <div className="p-8 md:p-12">
             <div className="max-w-none">
-              <h2 className="text-2xl md:text-3xl font-semibold text-body mb-6 font-ovo border-b border-default pb-4">
-                Project Overview
-              </h2>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-default pb-4">
+                <h2 className="text-2xl md:text-3xl font-semibold text-body font-ovo">
+                  Project Overview
+                </h2>
+                <Link href={project.link} target="_blank" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 relative z-10 shrink-0 text-lg inline-flex items-center justify-center gap-2">
+                  Visit live preview
+                  <span className="text-xl">&rarr;</span>
+                </Link>
+              </div>
               <p className="text-secondary leading-relaxed mb-10 text-lg">
-                This project represents a complete implementation using modern front-end engineering principles. 
-                With a focus on performance, scalability, and delivering an exceptional user experience, 
-                it showcases responsive UI architecture, seamless API integration, and robust state management. 
-                The interface was designed to be highly interactive, accessible, and pixel-perfect across all devices.
+                {project.overview}
               </p>
-              
+
               <h2 className="text-2xl md:text-3xl font-semibold text-body mt-12 mb-6 font-ovo border-b border-default pb-4">
                 Key Highlights
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {[
-                  "Responsive UI perfectly adapting to mobile, tablet, and desktop environments.",
-                  "Optimized performance with modern tooling and next-gen rendering strategies.",
-                  "Intuitive user flows and carefully crafted micro-interactions.",
-                  "Clean, modular, and highly maintainable codebase architecture."
-                ].map((item, index) => (
+                {project.features?.length > 0 ? project.features.map((item, index) => (
                   <div key={index} className="flex gap-4 p-5 bg-card rounded-xl border border-default shadow-sm transition-transform hover:scale-[1.02] duration-300 cursor-default">
                     <span className="text-accent font-bold text-xl leading-none mt-1">✦</span>
                     <span className="text-secondary">{item}</span>
                   </div>
-                ))}
+                )) : null}
               </div>
 
               <div className="mt-16 flex flex-col sm:flex-row gap-6 justify-center md:justify-between items-center p-8 md:p-10 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/10 rounded-2xl border border-purple-100 dark:border-purple-800/30 overflow-hidden relative shadow-inner">
                 <div className="absolute -right-16 -top-16 w-64 h-64 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-pink-400/10 dark:bg-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 
-                <h3 className="text-2xl md:text-3xl font-bold text-purple-900 dark:text-purple-100 font-ovo relative z-10 text-center md:text-left max-w-sm leading-tight">
+                <h3 className="text-2xl md:text-3xl font-bold text-body dark:text-body font-ovo relative z-10 text-center md:text-left max-w-sm leading-tight">
                   Interested in building something similar?
                 </h3>
                 
