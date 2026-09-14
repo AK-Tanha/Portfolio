@@ -37,10 +37,10 @@ export default async function WorkPage({ params }) {
     <div className="min-h-screen bg-body pt-24 pb-12 px-5">
       <div className="max-w-5xl mx-auto">
         <Link 
-          href="/#works" 
+          href="/works" 
           className="inline-flex items-center gap-2 text-accent hover:text-accent mb-8 transition-colors font-medium"
         >
-          &larr; Back to Portfolio
+          &larr; Back to Projects
         </Link>
 
         <div className="bg-card rounded-3xl overflow-hidden shadow-sm border border-default">
@@ -69,7 +69,7 @@ export default async function WorkPage({ params }) {
                 <h2 className="text-2xl md:text-3xl font-semibold text-body font-ovo">
                   Project Overview
                 </h2>
-                <Link href={project.link} target="_blank" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 relative z-10 shrink-0 text-lg inline-flex items-center justify-center gap-2">
+                <Link href={project.live_link} target="_blank" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 relative z-10 shrink-0 text-lg inline-flex items-center justify-center gap-2">
                   Visit live preview
                   <span className="text-xl">&rarr;</span>
                 </Link>
@@ -94,7 +94,7 @@ export default async function WorkPage({ params }) {
                 <div className="absolute -right-16 -top-16 w-64 h-64 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-pink-400/10 dark:bg-pink-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 
-                <h3 className="text-2xl md:text-3xl font-bold text-body dark:text-body font-ovo relative z-10 text-center md:text-left max-w-sm leading-tight">
+                <h3 className="text-2xl md:text-3xl font-bold text-purple-900 dark:text-gray-50 font-ovo relative z-10 text-center md:text-left max-w-sm leading-tight">
                   Interested in building something similar?
                 </h3>
                 

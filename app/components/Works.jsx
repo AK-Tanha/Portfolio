@@ -47,7 +47,7 @@ const Works = () => {
         className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10'
       >
         {workData.map((project, index) => (
-          <Link href={project.link || '#'} key={index} className="block group">
+          <Link href={`/works/${project.id}`} key={index} className="block group">
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
@@ -69,9 +69,9 @@ const Works = () => {
                 <p className='text-sm text-slate-300'>{project.description}</p>
               </div>
 
-              <div className='absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-4'>
+              {/* <div className='absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-4'>
                 <Image src={assets.send_icon} alt='' className='w-4 invert' />
-              </div>
+              </div> */}
             </motion.div>
           </Link>
         ))}
