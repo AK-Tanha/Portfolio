@@ -87,7 +87,7 @@ export const workData = [
         id: 'Stat-Fit-Gym-Workout-Tracker-PWA',
         title: 'Stat·Fit – Gym Workout Tracker PWA',
         description: 'Next.js 16 • React 19 • TypeScript • MongoDB • PWA',
-        bgImage: '/work-1.png',
+        bgImage: '/Work-3.png',
         live_link: 'https://stat-fit.vercel.app/',
         overview: 'A full-stack, mobile-first Progressive Web App for tracking gym workouts — installable on any device with offline support, no app store required.',
         features: [
@@ -104,7 +104,7 @@ export const workData = [
         id: 'APAN_Apparel',
         title: 'APAN Apparel — Full Stack E-commerce Platform',
         description: 'Next.js • TypeScript • Tailwind CSS • Axios',
-        bgImage: '/work-2.png',
+        bgImage: '/Work-1.png',
         live_link: 'https://apontraders.vercel.app/',
         overview: 'APAN Apparel is a complete e-commerce solution built with Next.js and NestJS, featuring a modern storefront, powerful admin dashboard, and comprehensive inventory management system.',
         features: ["Developed the Next.js storefront with product catalog, categories, brands, collections, guest/authenticated carts, and order placement.",
@@ -118,7 +118,7 @@ export const workData = [
         id: 'combat-corner-bd',
         title: 'Combat Corner BD – Full Stack Sports News Portal',
         description: 'React.js • Redux • Tailwind CSS • Axios',
-        bgImage: '/work-5.jpeg',
+        bgImage: '/Work-4.jpeg',
         live_link: 'https://combatcornerbd.vercel.app/',
         overview: 'A full-stack sports news platform focused on combat sports with authentication and content management functionality.',
         features: [
@@ -133,7 +133,7 @@ export const workData = [
         id: 'CFC-MMA-Event-Fighter-Management-System',
         title: 'CFC – MMA Event & Fighter Management System',
         description: 'React.js • Next.js • UI Engineering',
-        bgImage: '/work-4.png',
+        bgImage: '/Work-2.png',
         live_link: 'https://cage-fighting-championship.vercel.app/',
         overview: 'A comprehensive platform for managing MMA events and fighter profiles with a powerful admin panel.',
         features: [
