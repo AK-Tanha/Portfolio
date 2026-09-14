@@ -118,7 +118,7 @@ export const workData = [
         id: 'combat-corner-bd',
         title: 'Combat Corner BD – Full Stack Sports News Portal',
         description: 'React.js • Redux • Tailwind CSS • Axios',
-        bgImage: '/work-3.png',
+        bgImage: '/work-5.jpeg',
         live_link: 'https://combatcornerbd.vercel.app/',
         overview: 'A full-stack sports news platform focused on combat sports with authentication and content management functionality.',
         features: [

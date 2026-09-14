@@ -1,7 +1,7 @@
 import { workData } from '@/assets/assets'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import WorkImageLightbox from '@/app/components/WorkImageLightbox'
 
 export async function generateStaticParams() {
   return workData.map((project) => ({
@@ -44,35 +44,31 @@ export default async function WorkPage({ params }) {
         </Link>
 
         <div className="bg-card rounded-3xl overflow-hidden shadow-sm border border-default">
-          <div className="h-64 sm:h-80 md:h-[450px] w-full relative bg-card">
-            <Image 
-              src={project.bgImage} 
-              alt={project.title}
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-ovo font-bold text-white mb-4">
+          <WorkImageLightbox
+            src={project.bgImage}
+            title={project.title}
+          />
+
+          <div className="p-8 md:p-12">
+            <div className="border-b border-default pb-8 mb-8">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-ovo font-bold text-body mb-4">
                 {project.title}
               </h1>
-              <p className="text-gray-200 text-lg md:text-xl font-medium max-w-3xl leading-relaxed">
+              <p className="text-secondary text-lg md:text-xl font-medium max-w-3xl leading-relaxed">
                 {project.description}
               </p>
             </div>
-          </div>
-
-          <div className="p-8 md:p-12">
             <div className="max-w-none">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-default pb-4">
                 <h2 className="text-2xl md:text-3xl font-semibold text-body font-ovo">
                   Project Overview
                 </h2>
+                {project.live_link && (
                 <Link href={project.live_link} target="_blank" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-3.5 px-8 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300 relative z-10 shrink-0 text-lg inline-flex items-center justify-center gap-2">
                   Visit live preview
                   <span className="text-xl">&rarr;</span>
                 </Link>
+                )}
               </div>
               <p className="text-secondary leading-relaxed mb-10 text-lg">
                 {project.overview}

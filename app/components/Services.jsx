@@ -97,7 +97,7 @@ const ServiceCard = ({ service, index, isDark }) => {
           aria-label={`Read more about ${title}`}
         >
           Read more
-          <Image src={isDark ? assets.right_arrow_white : assets.right_arrow} alt='' width={16} height={16} className='w-4' />
+          <Image src={isDark ? assets.right_arrow_white : assets.right_arrow} alt='' width={16} height={16} className='w-4 h-auto' />
         </Link>
       </div>
     </motion.div>
