@@ -86,6 +86,7 @@ export const workData = [
     {
         id: 'Stat-Fit-Gym-Workout-Tracker-PWA',
         title: 'Stat·Fit – Gym Workout Tracker PWA',
+        category:'PWA',
         description: 'Next.js 16 • React 19 • TypeScript • MongoDB • PWA',
         bgImage: '/Work-3.png',
         live_link: 'https://stat-fit.vercel.app/',
@@ -102,6 +103,7 @@ export const workData = [
     },
     {
         id: 'APAN_Apparel',
+        category:'E-commerce',
         title: 'APAN Apparel — Full Stack E-commerce Platform',
         description: 'Next.js • TypeScript • Tailwind CSS • Axios',
         bgImage: '/Work-1.png',
@@ -117,6 +119,7 @@ export const workData = [
     {
         id: 'combat-corner-bd',
         title: 'Combat Corner BD – Full Stack Sports News Portal',
+        category:'News Portal',
         description: 'React.js • Redux • Tailwind CSS • Axios',
         bgImage: '/Work-4.jpeg',
         live_link: 'https://combatcornerbd.vercel.app/',
@@ -132,6 +135,7 @@ export const workData = [
     {
         id: 'CFC-MMA-Event-Fighter-Management-System',
         title: 'CFC – MMA Event & Fighter Management System',
+        category:'Management System',
         description: 'React.js • Next.js • UI Engineering',
         bgImage: '/Work-2.png',
         live_link: 'https://cage-fighting-championship.vercel.app/',
