@@ -113,6 +113,36 @@ html.dark .section-divider {
   background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.3), transparent);
 }
 
+.heading-underline {
+  position: relative;
+  display: inline-block;
+}
+.heading-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #7c3aed, #a855f7, #db2777);
+  opacity: 0.85;
+}
+.heading-underline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  height: 3px;
+  width: 35%;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.65);
+  filter: blur(2px);
+}
+html.dark .heading-underline::before {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
