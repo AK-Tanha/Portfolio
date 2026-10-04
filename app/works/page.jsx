@@ -25,10 +25,10 @@ const WorkPage = () => {
             href="/#works"
             className="inline-flex items-center gap-2 text-accent hover:text-accent transition-colors font-medium"
           >
-            &larr; Back to Portfolio
+            &larr; Back to Works
           </Link>
           <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl font-ovo font-bold gradient-text break-words">
-            My Latest Work
+            My Works
           </h2>
           <div className="section-divider" />
           <p className="text-center max-w-2xl mx-auto mt-5 font-ovo text-secondary text-sm sm:text-base">
