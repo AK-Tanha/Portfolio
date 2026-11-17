@@ -80,8 +80,12 @@ const Navbar = () => {
             <Image src={assets.right_arrow_white} className='w-3' alt='' />
           </a>
 
-          <button className='block md:hidden ml-2 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors'>
-            <Image src={isDark ? assets.menu_white : assets.menu_black} alt='' className='w-5' onClick={openMenu} />
+          <button
+            className='block md:hidden ml-2 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors'
+            onClick={openMenu}
+            aria-label='Open menu'
+          >
+            <Image src={isDark ? assets.menu_white : assets.menu_black} alt='' className='w-5' />
           </button>
         </div>
 

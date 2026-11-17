@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
 
         <div className='flex flex-col sm:flex-row items-center justify-between border-t border-default pt-8 gap-4'>
-          <p className='text-sm text-muted'>© 2025 AK Tanha. All rights reserved.</p>
+          <p className='text-sm text-muted'>© {new Date().getFullYear()} AK Tanha. All rights reserved.</p>
           <ul className='flex items-center gap-8'>
             <li>
               <a target='_blank' href="https://github.com/AK-Tanha"

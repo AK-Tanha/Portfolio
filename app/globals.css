@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* The theme toggle flips the `dark` class on <html>, so the `dark:` variant must
+   key off that class instead of the OS `prefers-color-scheme` setting. Without
+   this, every `dark:` utility follows the OS preference and ignores the toggle. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 * {
   font-family: 'Outfit';
 }

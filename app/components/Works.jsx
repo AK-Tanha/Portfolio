@@ -1,11 +1,11 @@
 "use client";
-import { assets, workData } from '@/assets/assets'
+import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from "motion/react"
 import { useTheme } from '@/app/context/ThemeContext'
 
-const Works = () => {
+const Works = ({ works = [] }) => {
   const { isDark } = useTheme()
 
   return (
@@ -46,23 +46,29 @@ const Works = () => {
         transition={{ duration: 0.6, delay: 0.9 }}
         className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10'
       >
-        {workData.map((project, index) => (
-          <Link href={`/works/${project.id}`} key={index} className="block group">
+        {works.map((project, index) => (
+          <Link href={`/works/${project.id}`} key={project.id} className="block group">
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
               className='rounded-2xl overflow-hidden glass card-hover'
             >
-              <div className='relative aspect-[4/3] overflow-hidden'>
+              <div className='relative aspect-[4/3] overflow-hidden bg-accent/5'>
                 <div className='absolute inset-0 transition-transform duration-500 group-hover:scale-105'>
-                  <Image
-                    src={project.bgImage}
-                    alt={project.title}
-                    fill
-                    priority={index === 0}
-                    className='object-cover object-top'
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
+                  {project.bgImage ? (
+                    <Image
+                      src={project.bgImage}
+                      alt={project.title}
+                      fill
+                      priority={index === 0}
+                      className='object-cover object-top'
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  ) : (
+                    <span className='flex h-full w-full items-center justify-center text-xs text-muted'>
+                      No image
+                    </span>
+                  )}
                 </div>
                 <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                   <span className='inline-flex items-center gap-2 bg-black/60 text-white text-sm font-medium backdrop-blur-sm rounded-full px-4 py-2'>

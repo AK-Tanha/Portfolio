@@ -1,6 +1,9 @@
-import { workData } from '@/assets/assets'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getAllWorks } from '@/lib/works'
+
+// Content is managed from /dashboard, so this must render per-request.
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata() {
   return {
@@ -9,14 +12,15 @@ export async function generateMetadata() {
   }
 }
 
-const groupedWork = workData.reduce((groups, project) => {
-  const category = project.category || 'Other'
-  if (!groups[category]) groups[category] = []
-  groups[category].push(project)
-  return groups
-}, {})
+const WorkPage = async () => {
+  const works = await getAllWorks()
 
-const WorkPage = () => {
+  const groupedWork = works.reduce((groups, project) => {
+    const category = project.category || 'Other'
+    if (!groups[category]) groups[category] = []
+    groups[category].push(project)
+    return groups
+  }, {})
   return (
     <div className="min-h-screen bg-body pt-24 pb-12 px-5">
       <div className="max-w-6xl mx-auto">
@@ -54,15 +58,21 @@ const WorkPage = () => {
                 {projects.map((project) => (
                   <Link href={`/works/${project.id}`} key={project.id} className="block group">
                     <div className="rounded-2xl overflow-hidden glass card-hover">
-                      <div className="relative aspect-[4/3] overflow-hidden">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-accent/5">
                         <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
-                          <Image
-                            src={project.bgImage}
-                            alt={project.title}
-                            fill
-                            className="object-cover object-top"
-                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                          />
+                          {project.bgImage ? (
+                            <Image
+                              src={project.bgImage}
+                              alt={project.title}
+                              fill
+                              className="object-cover object-top"
+                              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                            />
+                          ) : (
+                            <span className="flex h-full w-full items-center justify-center text-xs text-muted">
+                              No image
+                            </span>
+                          )}
                         </div>
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <span className="inline-flex items-center gap-2 bg-black/60 text-white text-sm font-medium backdrop-blur-sm rounded-full px-4 py-2">

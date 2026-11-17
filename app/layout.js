@@ -1,8 +1,7 @@
 import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import SiteChrome from "./components/SiteChrome";
 
 const outfit = Outfit({
   subsets: ["latin"], weight: ['500','600','700','800']
@@ -13,12 +12,12 @@ const ovo = Ovo({
 });
 
 export const metadata = {
-  title: "AK Tanha | MERN Stack Developer",
-  description: "Portfolio of AK Tanha — MERN Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.",
+  title: "AK Tanha | Full Stack Developer",
+  description: "Portfolio of AK Tanha — A Full Stack Developer from Bangladesh building responsive, full-stack web apps with clean UI and scalable backend.",
   keywords: "MERN Stack, React, Next.js, Developer, Bangladesh, Portfolio, Web Development",
   openGraph: {
-    title: "AK Tanha | MERN Stack Developer",
-    description: "MERN Stack Developer building responsive, full-stack web apps with clean UI and scalable backend.",
+    title: "AK Tanha | Full Stack Developer",
+    description: "Full Stack Developer building responsive, full-stack web apps with clean UI and scalable backend.",
     type: "website",
   },
 };
@@ -42,9 +41,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <ThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
       </body>
     </html>

@@ -11,22 +11,30 @@ const Contact = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault()
+    // Capture the form now: `event.currentTarget` is nulled once this handler
+    // yields to the await below.
+    const form = event.target
     setResult("Sending....")
-    const formData = new FormData(event.target)
-    formData.append("access_key", "4e46237e-cbe9-4bb6-90df-42af3afa70ca")
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    })
+    try {
+      const formData = new FormData(form)
+      formData.append("access_key", "4e46237e-cbe9-4bb6-90df-42af3afa70ca")
 
-    const data = await response.json()
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
 
-    if (data.success) {
-      setResult("Form Submitted Successfully")
-      event.target.reset()
-    } else {
-      setResult(data.message)
+      const data = await response.json().catch(() => null)
+
+      if (response.ok && data?.success) {
+        setResult("Form Submitted Successfully")
+        form.reset()
+      } else {
+        setResult(data?.message || "Something went wrong. Please try again.")
+      }
+    } catch {
+      setResult("Something went wrong. Please try again.")
     }
   }
 

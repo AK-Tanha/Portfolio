@@ -1,18 +1,15 @@
-import { workData } from '@/assets/assets'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import WorkImageLightbox from '@/app/components/WorkImageLightbox'
+import { getWorkBySlug } from '@/lib/works'
 
-export async function generateStaticParams() {
-  return workData.map((project) => ({
-    id: project.id,
-  }))
-}
+// Content is managed from /dashboard, so this must render per-request.
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params
-  const project = workData.find((p) => p.id === resolvedParams.id)
-  
+  const project = await getWorkBySlug(resolvedParams.id)
+
   if (!project) {
     return {
       title: 'Project Not Found',
@@ -27,7 +24,7 @@ export async function generateMetadata({ params }) {
 
 export default async function WorkPage({ params }) {
   const resolvedParams = await params
-  const project = workData.find((p) => p.id === resolvedParams.id)
+  const project = await getWorkBySlug(resolvedParams.id)
 
   if (!project) {
     notFound()
