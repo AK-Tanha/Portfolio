@@ -45,7 +45,7 @@ const About = () => {
           className='flex-1'
         >
           <p className='mb-10 max-w-2xl font-ovo text-lg text-secondary leading-relaxed'>
-            I'm a MERN Stack Developer skilled in building responsive web applications using MongoDB, Express.js, React.js, and Node.js. I enjoy crafting clean UIs, scalable backends, and delivering real-world solutions.
+            I'm a Full Stack Web Developer skilled in building responsive web applications using MongoDB, Express.js, React.js, and Node.js. I enjoy crafting clean UIs, scalable backends, and delivering real-world solutions.
           </p>
 
           <motion.div

@@ -84,6 +84,22 @@ html.dark .gradient-text {
   background-clip: text;
 }
 
+/* Hero headline accent: slow sweep across the gradient. Declared after
+   .gradient-text so `background-size` isn't reset by its `background` shorthand. */
+.text-shimmer {
+  background-size: 200% 200%;
+  animation: text-shimmer 7s ease-in-out infinite;
+}
+
+@keyframes text-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer { animation: none; }
+}
+
 .glass {
   background: var(--bg-glass);
   backdrop-filter: blur(12px);
