@@ -46,7 +46,7 @@ const Works = ({ works = [] }) => {
         transition={{ duration: 0.6, delay: 0.9 }}
         className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-10'
       >
-        {works.map((project, index) => (
+        {works.slice(0, 4).map((project, index) => (
           <Link href={`/works/${project.id}`} key={project.id} className="block group">
             <motion.div
               whileHover={{ y: -6 }}

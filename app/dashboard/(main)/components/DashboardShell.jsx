@@ -29,7 +29,11 @@ const links = [
 ];
 
 const isActive = (pathname, href) =>
-  href === "/dashboard" ? pathname === href : pathname.startsWith(`${href}/`);
+  // Exact match OR a child path. The root "/dashboard" link must not match
+  // "/dashboard/works", hence the separate branch.
+  href === "/dashboard"
+    ? pathname === href
+    : pathname === href || pathname.startsWith(`${href}/`);
 
 const Icon = ({ children, className = "w-4 h-4" }) => (
   <svg

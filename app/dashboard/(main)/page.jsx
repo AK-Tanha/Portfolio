@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllWorks, getCategorySummary } from "@/lib/works";
+import { getStoredWorks, getCategorySummary } from "@/lib/works";
 import { connectToDatabase } from "@/lib/mongodb";
 import PageHeader from "./components/PageHeader";
 
@@ -17,7 +17,7 @@ async function getDatabaseStatus() {
 
 export default async function DashboardOverview() {
   const [works, categories, db] = await Promise.all([
-    getAllWorks(),
+    getStoredWorks(),
     getCategorySummary(),
     getDatabaseStatus(),
   ]);
@@ -59,9 +59,10 @@ export default async function DashboardOverview() {
         }`}
       >
         <strong className="font-semibold">Database:</strong> {db.message}
-        {!db.connected && (
+        {(!db.connected || works.length === 0) && (
           <span className="ml-1">
-            — the site is serving fallback content from <code>lib/seed-works.js</code>.
+            — the public site is showing sample content from{" "}
+            <code>lib/seed-works.js</code>.
           </span>
         )}
       </div>

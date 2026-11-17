@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getAllWorks } from "@/lib/works";
+import { getStoredWorks } from "@/lib/works";
 import PageHeader from "../components/PageHeader";
 import DeleteWorkButton from "@/app/dashboard/(main)/components/DeleteWorkButton";
 
@@ -8,7 +8,7 @@ export const metadata = { title: "Projects | Dashboard" };
 export const dynamic = "force-dynamic";
 
 export default async function DashboardWorksPage() {
-  const works = await getAllWorks();
+  const works = await getStoredWorks();
 
   return (
     <div>

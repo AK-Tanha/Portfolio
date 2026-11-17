@@ -39,15 +39,23 @@ export async function POST(request) {
     );
   }
 
-  const result = await handleUpload({
-    body,
-    request,
-    onBeforeGenerateToken: async (pathname) => ({
-      allowedContentTypes: ALLOWED_TYPES,
-      maximumSizeInBytes: MAX_FILE_SIZE,
-      addRandomSuffix: true,
-    }),
-  });
+  let result;
+  try {
+    result = await handleUpload({
+      body,
+      request,
+      onBeforeGenerateToken: async () => ({
+        allowedContentTypes: ALLOWED_TYPES,
+        maximumSizeInBytes: MAX_FILE_SIZE,
+        addRandomSuffix: true,
+      }),
+    });
+  } catch (error) {
+    // handleUpload throws BlobContentTypeNotAllowedError / BlobFileTooLargeError
+    // for requests the token doesn't permit — that's a client error, not a 500.
+    console.error('[api/upload] rejected:', error.message);
+    return NextResponse.json({ error: error.message || 'Upload request rejected.' }, { status: 400 });
+  }
 
   return NextResponse.json(result);
 }
